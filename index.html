@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"/>
+<link rel="stylesheet" href="https://bootswatch.com/_vendor/font-awesome/css/font-awesome.min.css">
+<title>Hello, world!</title>
+</head>
+<body>
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <span class="navbar-brand mb-0 h1">
+                2DO 
+                <strong>
+                    Checklist Helper
+                </strong>
+            </span>
+        </div>
+    </nav>
+    
+    <div class="container container-fluid mt-3">
+
+        <div class="card card-primary">
+            <div class="card-header">
+                Adicionar Item
+            </div>
+
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <form id="entrada">
+                            <input class="form-control" type="text" id="item">
+                            <button class="btn btn-success mt-3 w-100" type="submit">Adicionar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card my-3">
+            <div class="card-header">
+                Lista de Itens
+                <span class="badge badge-pill badge-primary ml-1" id="contador"></span>
+            </div>
+
+            <div class="card-body text-center">
+                <div class="row" style="text-align:center">
+                    <ul class="list-group w-100" id="list" style="list-style:none">
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-sm-6">
+                <button class="btn btn-danger mt-3 w-100" id="clear">Limpar Lista</button>
+            </div>
+        </div>  
+        
+    </div>
+<script src="brain.js"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+</body>
+</html>
