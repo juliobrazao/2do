@@ -17,7 +17,7 @@ if (localStorageSize == 0) {
 
 entrada.addEventListener("submit", function(){
     if (item.value != "") {
-        localStorage.setItem(localStorageSize, item.value);
+        localStorage.setItem(localStorageSize, "__u_" + item.value);
         window.location.href = "./";
     }
 });
@@ -51,12 +51,22 @@ btnClear.addEventListener("click", function(){
 });
 
 for(var i=0; i < localStorageSize; i++) {
-    render.push(`
+    if (localStorage.getItem(i).substring(0,4) == "__u_") {
+        render.push(`
         <li class='list-group-item list-group-item-primary w-100 my-1' onclick='mark(${i})'>
-            ${localStorage.getItem(i)}
+            ${localStorage.getItem(i).substring(4)}
             <i class='fas fa-times' onclick="deleteItem(${i})" id='item-icon'></i>
         </li>
-        `);
+        `);    
+    } else {
+        render.push(`
+        <li class='list-group-item list-group-item-success w-100 my-1' onclick='unmark(${i})'>
+            ${localStorage.getItem(i).substring(4)}
+            <i class='fas fa-check' onclick="deleteItem(${i})" id='item-icon'></i>
+        </li>
+        `);    
+    }
+    
 }
 
 for(var j=0; j < itemList.length; j++) {
@@ -68,18 +78,21 @@ for(var j=0; j < itemList.length; j++) {
 list.innerHTML = render.toString().replaceAll(",", "");
 
 function mark(id){
-    document.getElementsByTagName("li")[id].setAttribute("class", "list-group-item list-group-item-success w-100 my-1");
     document.getElementsByTagName("li")[id].setAttribute("onclick", "unmark("+ id +")");
-    document.getElementsByTagName("i")[id].setAttribute("class", "fas fa-check");
+    localStorage.setItem(id, localStorage.getItem(id).replace("__u_", "__m_"));
+    window.location.href = "./";
+
 }
 
 function unmark(id){
-    document.getElementsByTagName("li")[id].setAttribute("class", "list-group-item list-group-item-info w-100 my-1");
     document.getElementsByTagName("li")[id].setAttribute("onclick", "mark("+ id +")");
-    document.getElementsByTagName("i")[id].setAttribute("class", "fas fa-times");
+    localStorage.setItem(id, localStorage.getItem(id).replace("__m_", "__u_"));
+    window.location.href = "./";
 }
 
-function deleteItem(id) {
-    Swal.fire("", "Item temporariamente removido!", "success");
-    document.getElementsByTagName("li")[id].setAttribute("style", "display:none");
-}
+// function deleteItem(id) {
+//     Swal.fire("", "Item temporariamente removido!", "success");
+//     document.getElementsByTagName("li")[id].setAttribute("style", "display:none");
+// }
+
+console.log(localStorage);
