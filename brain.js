@@ -1,7 +1,7 @@
 var item = document.getElementById("item");
 var btnSave = document.getElementById("save");
 var btnClear = document.getElementById("clear");
-var totalCounter = document.querySelector("span#contador");
+var totalCounter = document.querySelector("span#total_counter");
 var list = document.querySelector("ul");
 var itemList = document.getElementsByTagName("li");
 
@@ -94,5 +94,3 @@ function unmark(id){
 //     Swal.fire("", "Item temporariamente removido!", "success");
 //     document.getElementsByTagName("li")[id].setAttribute("style", "display:none");
 // }
-
-console.log(localStorage);
