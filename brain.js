@@ -12,6 +12,7 @@ var localStorageSize = localStorage.length;
 if (localStorageSize == 0) {
     totalCounter.innerHTML = "Sem itens";
 } else {
+    totalCounter.setAttribute("class", "badge navbar-text rounded-pill bg-success");
     totalCounter.innerHTML = "<strong>" + localStorageSize + "</strong> ";
 }
 
@@ -58,13 +59,20 @@ for(var i=0; i < localStorageSize; i++) {
             <i class='fas fa-times' onclick="deleteItem(${i})" id='item-icon'></i>
         </li>
         `);    
-    } else {
+    } else if (localStorage.getItem(i).substring(0,4) == "__m_") {
         render.push(`
         <li class='list-group-item list-group-item-success w-100 my-1' onclick='unmark(${i})'>
             ${localStorage.getItem(i).substring(4)}
             <i class='fas fa-check' onclick="deleteItem(${i})" id='item-icon'></i>
         </li>
         `);    
+    } else if (localStorage.getItem(i).substring(0,4) == "__h_") {
+        render.push(`
+        <li class='list-group-item list-group-item-info w-100 my-1 d-none' onclick='unmark(${i})'>
+            ${localStorage.getItem(i).substring(4)}
+            <i class='fas fa-check' onclick="deleteItem(${i})" id='item-icon'></i>
+        </li>
+        `);
     }
     
 }
@@ -89,8 +97,3 @@ function unmark(id){
     localStorage.setItem(id, localStorage.getItem(id).replace("__m_", "__u_"));
     window.location.href = "./";
 }
-
-// function deleteItem(id) {
-//     Swal.fire("", "Item temporariamente removido!", "success");
-//     document.getElementsByTagName("li")[id].setAttribute("style", "display:none");
-// }
