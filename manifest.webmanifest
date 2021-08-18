@@ -1,0 +1,8 @@
+{
+    "name": "2DO",
+    "short_name": "2DO",
+    "start_url": ".",
+    "display": "standalone",
+    "background_color": "#fff",
+    "description": "An todo-list PWA"   
+  }
