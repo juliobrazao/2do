@@ -2,18 +2,29 @@ var item = document.getElementById("item");
 var btnSave = document.getElementById("save");
 var btnClear = document.getElementById("clear");
 var totalCounter = document.querySelector("span#total_counter");
+var totalMarked = document.querySelector("span#total_marked");
+var totalUnmarked = document.querySelector("span#total_unmarked");
 var list = document.querySelector("ul");
 var itemList = document.getElementsByTagName("li");
+
+var marked = [];
+var unmarked = [];
+
+contagemParcial();
 
 var render = [];
 
 var localStorageSize = localStorage.length;
+var markedItems = marked.length;
+var unmarkedItems = unmarked.length;
 
 if (localStorageSize == 0) {
     totalCounter.innerHTML = "Sem itens";
 } else {
     totalCounter.setAttribute("class", "badge navbar-text rounded-pill bg-info text-dark");
     totalCounter.innerHTML = "<strong>" + localStorageSize + "</strong> ";
+    totalMarked.innerHTML = "<strong>" + markedItems + "</strong>";
+    totalUnmarked.innerHTML = "<strong>" + unmarkedItems + "</strong>";
 }
 
 entrada.addEventListener("submit", function(){
@@ -56,7 +67,10 @@ for(var i=0; i < localStorageSize; i++) {
         render.push(`
         <li class='list-group-item list-group-item-warning w-100 my-1' onclick='mark(${i})'>
             <div class='row'>
-                <div class='col-10 text-start'>
+                <div class='col-1 text-center'>
+                    <i class='bi bi-eye-slash-fill' onclick='hideForever(${i})'></i>
+                </div>
+                <div class='col-9 text-start'>
                     ${localStorage.getItem(i).substring(4)}
                 </div>
                 <div class='col-2 text-end'>
@@ -69,7 +83,10 @@ for(var i=0; i < localStorageSize; i++) {
         render.push(`
         <li class='list-group-item list-group-item-success w-100 my-1' onclick='unmark(${i})'>
             <div class='row'>
-                <div class='col-10 text-start'>
+                <div class='col-1 text-center'>
+                    <i class='bi bi-eye-slash-fill' onclick='hideForever(${i})'></i>
+                </div>
+                <div class='col-9 text-start'>
                     ${localStorage.getItem(i).substring(4)}
                 </div>
                 <div class='col-2 text-end'>
@@ -82,7 +99,7 @@ for(var i=0; i < localStorageSize; i++) {
         render.push(`
         <li class='list-group-item list-group-item-info w-100 my-1 d-none' onclick='unmark(${i})'>
             <div class='row'>
-                <div class='col-10'>
+                <div class='col-8'>
                     ${localStorage.getItem(i).substring(4)}
                 </div>
                 <div class='col-2'>
@@ -114,4 +131,18 @@ function unmark(id){
     document.getElementsByTagName("li")[id].setAttribute("onclick", "mark("+ id +")");
     localStorage.setItem(id, localStorage.getItem(id).replace("__m_", "__u_"));
     window.location.href = "./";
+}
+
+function contagemParcial(){
+    for (let i=0; i < localStorage.length; i++){
+        if (localStorage.getItem(i)[2] == 'm'){
+            marked.push(i);
+        } else if (localStorage.getItem(i)[2] == 'u'){
+            unmarked.push(i);
+        }
+    }
+}
+
+function hideForever(id){
+    console.log(localStorage.getItem(id));
 }
