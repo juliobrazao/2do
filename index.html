@@ -3,23 +3,30 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link rel="stylesheet" href="https://bootswatch.com/5/materia/bootstrap.css"/>
-<link rel="stylesheet" href="https://bootswatch.com/_vendor/font-awesome/css/font-awesome.min.css">
-<script src="https://kit.fontawesome.com/32520b1c65.js" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;400;500;700&family=Raleway:wght@100;500&display=swap" rel="stylesheet">
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.2/font/bootstrap-icons.css">
 <link rel="manifest" href="./manifest.webmanifest">
 <title>2DO - Checklist Helper</title>
+<style>
+    * {
+        font-family: 'Raleway' !important;
+    }
+</style>
 </head>
 <body>
-    <nav class="navbar sticky-top navbar-dark bg-dark">
+    <nav class="navbar sticky-top navbar-dark bg-dark py-3">
         <div class="container-fluid">
             <span class="navbar-brand mb-0 h1">
+                <i class="bi bi-bag-check-fill"></i>
+                &nbsp;
                 2DO
                 <strong>
                     Checklist Helper
                 </strong>
             </span>
 
-            <span class="badge navbar-text rounded-pill bg-primary" id="total_counter"></span>
+            <span class="badge navbar-text rounded-pill bg-info text-dark" id="total_counter"></span>
 
         </div>
     </nav>
@@ -28,6 +35,8 @@
 
         <div class="card card-primary">
             <div class="card-header">
+                <i class="bi bi-plus-square-fill"></i>
+                &nbsp;
                 Adicionar Item
             </div>
 
@@ -36,7 +45,11 @@
                     <div class="col-sm-12">
                         <form id="entrada">
                             <input class="form-control" type="text" id="item" autocomplete="off" autofocus="autofocus">
-                            <button class="btn btn-success mt-3 w-100" type="submit">Adicionar</button>
+                            <button class="btn btn-success mt-3 py-2 w-100" type="submit">
+                                Adicionar
+                                &nbsp;
+                                <i class="bi bi-check-circle-fill"></i>
+                            </button>
                         </form>
                     </div>
                 </div>
@@ -45,6 +58,8 @@
 
         <div class="card my-3">
             <div class="card-header">
+                <i class="bi bi-list-check"></i>
+                &nbsp;
                 Lista de Itens
             </div>
 
@@ -58,7 +73,11 @@
 
         <div class="row">
             <div class="col-sm-12">
-                <button class="btn btn-danger mt-3 w-100 mb-3" id="clear">Limpar Lista</button>
+                <button class="btn btn-danger py-2 mt-3 w-100 mb-3" id="clear">
+                    Limpar Lista
+                    &nbsp;
+                    <i class="bi bi-x-circle-fill"></i>
+                </button>
             </div>
         </div>  
         

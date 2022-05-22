@@ -12,7 +12,7 @@ var localStorageSize = localStorage.length;
 if (localStorageSize == 0) {
     totalCounter.innerHTML = "Sem itens";
 } else {
-    totalCounter.setAttribute("class", "badge navbar-text rounded-pill bg-success");
+    totalCounter.setAttribute("class", "badge navbar-text rounded-pill bg-info text-dark");
     totalCounter.innerHTML = "<strong>" + localStorageSize + "</strong> ";
 }
 
@@ -54,23 +54,41 @@ btnClear.addEventListener("click", function(){
 for(var i=0; i < localStorageSize; i++) {
     if (localStorage.getItem(i).substring(0,4) == "__u_") {
         render.push(`
-        <li class='list-group-item list-group-item-primary w-100 my-1' onclick='mark(${i})'>
-            ${localStorage.getItem(i).substring(4)}
-            <i class='fas fa-times' onclick="deleteItem(${i})" id='item-icon'></i>
+        <li class='list-group-item list-group-item-warning w-100 my-1' onclick='mark(${i})'>
+            <div class='row'>
+                <div class='col-10 text-start'>
+                    ${localStorage.getItem(i).substring(4)}
+                </div>
+                <div class='col-2 text-end'>
+                    <i class='bi bi-check-all' onclick="deleteItem(${i})" id='item-icon'></i>
+                </div>
+            </div>
         </li>
         `);    
     } else if (localStorage.getItem(i).substring(0,4) == "__m_") {
         render.push(`
         <li class='list-group-item list-group-item-success w-100 my-1' onclick='unmark(${i})'>
-            ${localStorage.getItem(i).substring(4)}
-            <i class='fas fa-check' onclick="deleteItem(${i})" id='item-icon'></i>
+            <div class='row'>
+                <div class='col-10 text-start'>
+                    ${localStorage.getItem(i).substring(4)}
+                </div>
+                <div class='col-2 text-end'>
+                    <i class='bi bi-check-all' onclick="deleteItem(${i})" id='item-icon'></i>
+                </div>
+            </div>
         </li>
         `);    
     } else if (localStorage.getItem(i).substring(0,4) == "__h_") {
         render.push(`
         <li class='list-group-item list-group-item-info w-100 my-1 d-none' onclick='unmark(${i})'>
-            ${localStorage.getItem(i).substring(4)}
-            <i class='fas fa-check' onclick="deleteItem(${i})" id='item-icon'></i>
+            <div class='row'>
+                <div class='col-10'>
+                    ${localStorage.getItem(i).substring(4)}
+                </div>
+                <div class='col-2'>
+                    <i class='bi bi-check-all' onclick="deleteItem(${i})" id='item-icon'></i>
+                </div>
+            </div>
         </li>
         `);
     }
